@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="amazinglzy", # Replace with your own username
+    name="elasticsearch_django_migrate", # Replace with your own username
     version="0.0.1",
     author="Li Zhiyuan",
     author_email="forlearn_lzy@163.com",
