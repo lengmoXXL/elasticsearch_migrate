@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  index-server-01:
+    image: elasticsearch:7.4.2
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - index-server-01:/usr/share/elasticsearch/data
+
+  index-monitor:
+    image: kibana:7.4.2
+    links:
+      - index-server-01:elasticsearch
+    ports:
+      - "5601:5601"
+
+  db:
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test_migrate
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  server:
+    build: ./src
+    links:
+    - index-server-01
+    depends_on:
+    - index-server-01
+
+volumes:
+  index-server-01:
+  db-data:

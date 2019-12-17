@@ -58,6 +58,7 @@ class DocumentRegistry:
 
     def migrate(cls, reindex=False):
         for doc in cls._docs:
+            print(doc)
             cls._migrate_doc(doc, reindex)
 
 
